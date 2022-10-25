@@ -8,4 +8,11 @@ public class University {
     private List<Student> studentsList;
     private List<Subject> subjectsList;
 
+    public University() {
+        this.teachersList = new ArrayList<>();
+        this.studentsList = new ArrayList<>();
+        this.subjectsList = new ArrayList<>();
+    }
+
+    
 }
