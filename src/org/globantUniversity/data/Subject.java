@@ -8,7 +8,6 @@ public class Subject {
     private List<Student> studentsList;
     private Teacher teacher;
 
-    
     public Subject(String name, int classroom, List<Student> studentsList, Teacher teacher) {
         this.name = name;
         this.classroom = classroom;
@@ -16,6 +15,12 @@ public class Subject {
         this.teacher = teacher;
     }
 
-    
+    @Override
+    public String toString() {
+        return name +
+                "   Classroom: " + classroom +
+                "   Students: " + studentsList +
+                "   Teacher: " + teacher;
+    }
 
 }
