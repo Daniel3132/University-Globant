@@ -47,7 +47,7 @@ public class Main {
             }
         } while (runMenu);
 
-        input.close();
+        input = new Scanner(System.in);
     }
 
     public static void printTeachersData(Scanner input) {
@@ -69,7 +69,7 @@ public class Main {
                 case "1":
                     System.out.println("Enter the subject name");
                     String name = input.nextLine();
-                    input.close();
+                    input = new Scanner(System.in);
 
                     // search by name
                     // print subject by university
@@ -89,11 +89,11 @@ public class Main {
 
         System.out.println("Enter the name");
         String name = input.nextLine();
-        input.close();
+        input = new Scanner(System.in);
 
         System.out.println("Enter the age");
         int age = input.nextInt();
-        input.close();
+        input = new Scanner(System.in);
 
         // call student constructor by university
 
@@ -103,20 +103,20 @@ public class Main {
     public static void createSubject(Scanner input) {
         System.out.println("Enter the name");
         String name = input.nextLine();
-        input.close();
+        input = new Scanner(System.in);
 
         System.out.println("Enter the classroom number");
         int classroom = input.nextInt();
-        input.close();
+        input = new Scanner(System.in);
 
         System.out.println("Enter the teacher id");
         int teacherId = input.nextInt();
-        input.close();
+        input = new Scanner(System.in);
 
         ArrayList<Integer> studentsIdList = new ArrayList<Integer>();
 
         String option = input.nextLine();
-        input.close();
+        input = new Scanner(System.in);
         boolean runAddStudentsMenu = true;
         do {
             System.out.println("Select an option!" +
@@ -127,7 +127,7 @@ public class Main {
                 case "1":
                     System.out.println("Enter the teacher id");
                     int studentId = input.nextInt();
-                    input.close();
+                    input = new Scanner(System.in);
 
                     studentsIdList.add(studentId);
                     break;
