@@ -2,7 +2,7 @@ package org.globantUniversity.data;
 
 public abstract class Teacher {
 
-    private String name;
+    private String fullName;
     private float weekHours;
     private float expYears;
     private float baseSalary;
@@ -10,7 +10,7 @@ public abstract class Teacher {
     public abstract double getSalary();
 
     public String getName() {
-        return name;
+        return fullName;
     }
 
     public float getWeekHours() {
@@ -25,6 +25,12 @@ public abstract class Teacher {
         return baseSalary;
     }
 
+    @Override
+    public String toString() {
+        return fullName +
+                "   Hours per week: " + weekHours +
+                "   Exp. years: " + expYears +
+                "   Salary" + getBaseSalary();
+    }
 
-    
 }

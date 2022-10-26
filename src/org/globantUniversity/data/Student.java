@@ -2,17 +2,22 @@ package org.globantUniversity.data;
 
 public class Student {
     private int id;
-    private String name;
+    private String fullName;
     private int age;
     private static int count = 1;
 
-
-    public Student( String name, int age) {
+    public Student(String fullName, int age) {
         this.id = count;
         count++;
-        this.name = name;
+        this.fullName = fullName;
         this.age = age;
     }
 
+    @Override
+    public String toString() {
+        return "#" + id +
+                "Name: " + fullName +
+                "Age: " + age;
+    }
 
 }
