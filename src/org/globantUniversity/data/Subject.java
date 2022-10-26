@@ -1,14 +1,15 @@
 package org.globantUniversity.data;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class Subject {
     private String name;
     private int classroom;
-    private List<Student> studentsList;
+    private ArrayList<Student> studentsList;
     private Teacher teacher;
 
-    public Subject(String name, int classroom, List<Student> studentsList, Teacher teacher) {
+
+    public Subject(String name, int classroom, ArrayList<Student> studentsList, Teacher teacher) {
         this.name = name;
         this.classroom = classroom;
         this.studentsList = studentsList;

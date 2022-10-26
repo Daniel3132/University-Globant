@@ -9,6 +9,11 @@ public abstract class Teacher {
 
     public abstract double getSalary();
 
+    public Teacher(String fullName) {
+        this.fullName = fullName;
+        this.baseSalary = 1000000;
+    }
+
     public String getName() {
         return fullName;
     }
