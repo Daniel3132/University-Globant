@@ -51,7 +51,7 @@ public class Main {
     }
 
     public static void printTeachersData(Scanner input) {
-        //access to teachers by university
+        // access to teachers by university
     }
 
     public static void printSubjectsData(Scanner input) {
@@ -71,8 +71,8 @@ public class Main {
                     String name = input.nextLine();
                     input.close();
 
-                    //search by name
-                    //call subject constructor by university
+                    // search by name
+                    // print subject by university
                     break;
                 case "2":
                     runSubjectMenu = false;
@@ -95,7 +95,9 @@ public class Main {
         int age = input.nextInt();
         input.close();
 
-        //call student constructor by university
+        // call student constructor by university
+
+        System.out.println("Student " + name + "added successfully");
     }
 
     public static void createSubject(Scanner input) {
@@ -131,8 +133,9 @@ public class Main {
                     break;
                 case "2":
                     // turn studentsIdList in to newStudentsList
-                    // create subject
+                    // create subject by university
 
+                    System.out.println("Subject " + name + " added successfully");
                     runAddStudentsMenu = false;
                     break;
                 default:
@@ -143,7 +146,7 @@ public class Main {
     }
 
     public static void printStudentSubjects(Scanner input) {
-        //access to list and print it
+        // access to list and print it
     }
 
 }
