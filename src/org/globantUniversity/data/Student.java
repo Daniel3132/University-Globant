@@ -25,9 +25,9 @@ public class Student {
 
     @Override
     public String toString() {
-        return "#" + id +
-                " Name: " + fullName +
-                " Age: " + age;
+        return "Id: " + id +
+                "    -    " + fullName +
+                "    -    Age: " + age;
     }
 
 }

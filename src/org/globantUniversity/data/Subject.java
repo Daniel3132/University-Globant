@@ -21,12 +21,16 @@ public class Subject {
         return name;
     }
 
+    public ArrayList<Student> getStudentsList() {
+        return studentsList;
+    }
+
     @Override
     public String toString() {
         return name +
-                "   Classroom: " + classroom +
-                "   No. students: " + studentsList.size() +
-                "   Teacher: " + teacher.getFullName();
+                "   -   Classroom: " + classroom +
+                "   -   No. students: " + studentsList.size() +
+                "   -   Teacher: " + teacher.getFullName();
     }
 
 }

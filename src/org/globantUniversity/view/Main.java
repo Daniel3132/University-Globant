@@ -15,7 +15,7 @@ public class Main {
 
         boolean runMenu = true;
         do {
-            System.out.println("\n                          Welcome to Globant University!\n" +
+            System.out.println("\n\n                          Welcome to Globant University!\n" +
                     "\n Select an option!" +
                     "\n    1. Check teachers data" +
                     "\n    2. Check Subjects" +
@@ -31,22 +31,22 @@ public class Main {
 
             switch (option) {
                 case "1":
-                    printTeachersData(university, input);
+                    printTeachersData(university);
                     break;
                 case "2":
-                    printSubjectsData(university, input);
+                    printSubjectsData(university);
                     break;
                 case "3":
-                    createStudent(university, input);
+                    createStudent(university);
                     break;
                 case "4":
-                    createSubject(university, input);
+                    createSubject(university);
                     break;
                 case "5":
-                    printStudentSubjects(university, input);
+                    printStudentSubjects(university);
                     break;
                 case "6":
-                    printStudentsData(university, input);
+                    printStudentsData(university);
                     break;
                 case "7":
                     System.out.println("Have a nice day :D");
@@ -61,7 +61,7 @@ public class Main {
         input = new Scanner(System.in);
     }
 
-    public static void printTeachersData(University university, Scanner input) {
+    public static void printTeachersData(University university) {
         if (university.getTeachersListSize() == 0) {
             System.out.println("There is not teachers");
         }
@@ -71,7 +71,9 @@ public class Main {
         }
     }
 
-    public static void printSubjectsData(University university, Scanner input) {
+    public static void printSubjectsData(University university) {
+
+        Scanner input = new Scanner(System.in);
 
         for (int i = 0; i < university.getSubjectsListSize(); i++) {
             System.out.println(university.getSubjectByIndex(i));
@@ -91,13 +93,12 @@ public class Main {
                     String name = input.nextLine();
                     input = new Scanner(System.in);
 
-                    /*
-                     * if (( university.getSubjectByName(name)).getName() != null) {
-                     * System.out.println( university.getSubjectByName(name) );
-                     * } else {
-                     * System.out.println("This Subject do not exist!");
-                     * }
-                     */
+                    if ((university.getSubjectByName(name)).getName() != null) {
+                        System.out.println(university.getSubjectByName(name));
+                    } else {
+                        System.out.println("This Subject do not exist!");
+                    }
+
                     System.out.println(university.getSubjectByName(name));
                     break;
                 case "2":
@@ -111,7 +112,8 @@ public class Main {
 
     }
 
-    public static void createStudent(University university, Scanner input) {
+    public static void createStudent(University university) {
+        Scanner input = new Scanner(System.in);
 
         System.out.println("Enter the full name");
         String name = input.nextLine();
@@ -126,7 +128,9 @@ public class Main {
         System.out.println("Student " + name + " added successfully");
     }
 
-    public static void createSubject(University university, Scanner input) {
+    public static void createSubject(University university) {
+        Scanner input = new Scanner(System.in);
+
         System.out.println("Enter the name");
         String name = input.nextLine();
         input = new Scanner(System.in);
@@ -144,9 +148,10 @@ public class Main {
 
             if (university.getTeacherById(teacherId) == null) {
                 System.out.println("Invalid Id");
-                isInvalidId = false;
             } else {
-                System.out.println("Teacher " + university.getTeacherById(teacherId).getFullName() + " added successfully!" );
+                System.out.println(
+                        "Teacher " + university.getTeacherById(teacherId).getFullName() + " added successfully!");
+                isInvalidId = false;
             }
 
         } while (isInvalidId);
@@ -177,7 +182,7 @@ public class Main {
 
                     break;
                 case "2":
-                    university.createSubject(name, classroom, studentsToAddList, university.getTeacherById(teacherId) );
+                    university.createSubject(name, classroom, studentsToAddList, university.getTeacherById(teacherId));
 
                     System.out.println("Subject " + name + " added successfully");
                     runAddStudentsMenu = false;
@@ -189,11 +194,18 @@ public class Main {
         } while (runAddStudentsMenu);
     }
 
-    public static void printStudentSubjects(University university, Scanner input) {
-        // access to list and print it
+    public static void printStudentSubjects(University university) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Enter the student id");
+        int id = input.nextInt();
+        input = new Scanner(System.in);
+
+        System.out.println("\nStudent:       " + university.getStudentById(id) +
+                "\n\nIs taking:       " + university.getStudentSubjects(id));
     }
 
-    public static void printStudentsData(University university, Scanner input) {
+    public static void printStudentsData(University university) {
         if (university.getStudentsListSize() == 0) {
             System.out.println("There is not Students");
         }
