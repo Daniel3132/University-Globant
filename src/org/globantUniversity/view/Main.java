@@ -3,19 +3,27 @@ package org.globantUniversity.view;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import org.globantUniversity.data.Student;
+import org.globantUniversity.data.University;
+import org.globantUniversity.persistence.Initializer;
+
 public class Main {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
+        University university = Initializer.createUniversity();
+
         boolean runMenu = true;
         do {
-            System.out.println("Select an option!" +
-                    "\n 1. Check teachers data" +
-                    "\n 2. Check Subjects" +
-                    "\n 3. Create Student" +
-                    "\n 4. Create Subject" +
-                    "\n 5. Check student Subjects" +
-                    "\n 6. Exit");
+            System.out.println("\n                          Welcome to Globant University!\n" +
+                    "\n Select an option!" +
+                    "\n    1. Check teachers data" +
+                    "\n    2. Check Subjects" +
+                    "\n    3. Create Student" +
+                    "\n    4. Create Subject" +
+                    "\n    5. Check student Subjects" +
+                    "\n    6. Check students" +
+                    "\n    7. Exit");
 
             // option is String to avoid app closes because of missmatching input
             String option = input.nextLine();
@@ -23,21 +31,24 @@ public class Main {
 
             switch (option) {
                 case "1":
-                    printTeachersData(input);
+                    printTeachersData(university, input);
                     break;
                 case "2":
-                    printSubjectsData(input);
+                    printSubjectsData(university, input);
                     break;
                 case "3":
-                    createStudent(input);
+                    createStudent(university, input);
                     break;
                 case "4":
-                    createSubject(input);
+                    createSubject(university, input);
                     break;
                 case "5":
-                    printStudentSubjects(input);
+                    printStudentSubjects(university, input);
                     break;
                 case "6":
+                    printStudentsData(university, input);
+                    break;
+                case "7":
                     System.out.println("Have a nice day :D");
                     runMenu = false;
                     break;
@@ -50,14 +61,21 @@ public class Main {
         input = new Scanner(System.in);
     }
 
-    public static void printTeachersData(Scanner input) {
-        // access to teachers by university
+    public static void printTeachersData(University university, Scanner input) {
+        if (university.getTeachersListSize() == 0) {
+            System.out.println("There is not teachers");
+        }
+        System.out.println("                    Teachers\n");
+        for (int i = 0; i < university.getTeachersListSize(); i++) {
+            System.out.println(university.getTeacherByIndex(i));
+        }
     }
 
-    public static void printSubjectsData(Scanner input) {
+    public static void printSubjectsData(University university, Scanner input) {
 
-        String option = input.nextLine();
-        input = new Scanner(System.in);
+        for (int i = 0; i < university.getSubjectsListSize(); i++) {
+            System.out.println(university.getSubjectByIndex(i));
+        }
 
         boolean runSubjectMenu = true;
         do {
@@ -65,14 +83,22 @@ public class Main {
                     "\n 1. Detail a subject" +
                     "\n 2. Exit to main menu");
 
+            String option = input.nextLine();
+            input = new Scanner(System.in);
             switch (option) {
                 case "1":
                     System.out.println("Enter the subject name");
                     String name = input.nextLine();
                     input = new Scanner(System.in);
 
-                    // search by name
-                    // print subject by university
+                    /*
+                     * if (( university.getSubjectByName(name)).getName() != null) {
+                     * System.out.println( university.getSubjectByName(name) );
+                     * } else {
+                     * System.out.println("This Subject do not exist!");
+                     * }
+                     */
+                    System.out.println(university.getSubjectByName(name));
                     break;
                 case "2":
                     runSubjectMenu = false;
@@ -85,9 +111,9 @@ public class Main {
 
     }
 
-    public static void createStudent(Scanner input) {
+    public static void createStudent(University university, Scanner input) {
 
-        System.out.println("Enter the name");
+        System.out.println("Enter the full name");
         String name = input.nextLine();
         input = new Scanner(System.in);
 
@@ -95,12 +121,12 @@ public class Main {
         int age = input.nextInt();
         input = new Scanner(System.in);
 
-        // call student constructor by university
+        university.createStudent(name, age);
 
-        System.out.println("Student " + name + "added successfully");
+        System.out.println("Student " + name + " added successfully");
     }
 
-    public static void createSubject(Scanner input) {
+    public static void createSubject(University university, Scanner input) {
         System.out.println("Enter the name");
         String name = input.nextLine();
         input = new Scanner(System.in);
@@ -109,31 +135,49 @@ public class Main {
         int classroom = input.nextInt();
         input = new Scanner(System.in);
 
-        System.out.println("Enter the teacher id");
-        int teacherId = input.nextInt();
-        input = new Scanner(System.in);
+        int teacherId;
+        boolean isInvalidId = true;
+        do {
+            System.out.println("Enter the teacher id");
+            teacherId = input.nextInt();
+            input = new Scanner(System.in);
 
-        ArrayList<Integer> studentsIdList = new ArrayList<Integer>();
+            if (university.getTeacherById(teacherId) == null) {
+                System.out.println("Invalid Id");
+                isInvalidId = false;
+            } else {
+                System.out.println("Teacher " + university.getTeacherById(teacherId).getFullName() + " added successfully!" );
+            }
 
-        String option = input.nextLine();
-        input = new Scanner(System.in);
+        } while (isInvalidId);
+
+        ArrayList<Student> studentsToAddList = new ArrayList<Student>();
+
         boolean runAddStudentsMenu = true;
         do {
             System.out.println("Select an option!" +
-                    "\n 1. Enter the Student id to add it to the Subject list" +
+                    "\n 1. Add Student by id to the Subject list" +
                     "\n 2. Finish and exit to main menu");
 
+            String option = input.nextLine();
+            input = new Scanner(System.in);
             switch (option) {
                 case "1":
-                    System.out.println("Enter the teacher id");
+                    System.out.println("Enter the student id");
                     int studentId = input.nextInt();
                     input = new Scanner(System.in);
 
-                    studentsIdList.add(studentId);
+                    Student studentToAdd = university.getStudentById(studentId);
+                    if (studentToAdd.getFullName() != null) {
+                        studentsToAddList.add(studentToAdd);
+                        System.out.println("Student " + studentToAdd.getFullName() + " added successfully");
+                    } else {
+                        System.out.println("This student does not exits!");
+                    }
+
                     break;
                 case "2":
-                    // turn studentsIdList in to newStudentsList
-                    // create subject by university
+                    university.createSubject(name, classroom, studentsToAddList, university.getTeacherById(teacherId) );
 
                     System.out.println("Subject " + name + " added successfully");
                     runAddStudentsMenu = false;
@@ -145,8 +189,17 @@ public class Main {
         } while (runAddStudentsMenu);
     }
 
-    public static void printStudentSubjects(Scanner input) {
+    public static void printStudentSubjects(University university, Scanner input) {
         // access to list and print it
     }
 
+    public static void printStudentsData(University university, Scanner input) {
+        if (university.getStudentsListSize() == 0) {
+            System.out.println("There is not Students");
+        }
+        System.out.println("                    Students\n");
+        for (int i = 0; i < university.getStudentsListSize(); i++) {
+            System.out.println(university.getStudentByIndex(i));
+        }
+    }
 }

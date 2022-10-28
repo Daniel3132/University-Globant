@@ -1,6 +1,6 @@
 package org.globantUniversity.data;
 
-public class PartTimeTeacher extends Teacher { 
+public class PartTimeTeacher extends Teacher {
 
     private float weekHours;
 
@@ -11,9 +11,7 @@ public class PartTimeTeacher extends Teacher {
 
     @Override
     public double getSalary() {
-        return this.getBaseSalary() * weekHours;
+        return Teacher.baseSalary * weekHours;
     }
-
-
 
 }

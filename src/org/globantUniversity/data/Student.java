@@ -6,6 +6,8 @@ public class Student {
     private int age;
     private static int count = 1;
 
+    public Student(){}
+    
     public Student(String fullName, int age) {
         this.id = count;
         count++;
@@ -13,11 +15,19 @@ public class Student {
         this.age = age;
     }
 
+    public String getFullName() {
+        return fullName;
+    }
+
+    public int getId() {
+        return id;
+    }
+
     @Override
     public String toString() {
         return "#" + id +
-                "Name: " + fullName +
-                "Age: " + age;
+                " Name: " + fullName +
+                " Age: " + age;
     }
 
 }

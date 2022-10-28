@@ -2,40 +2,31 @@ package org.globantUniversity.data;
 
 public abstract class Teacher {
 
-    private String fullName;
-    private float weekHours;
-    private float expYears;
-    private float baseSalary;
+    protected String fullName;
+    protected int teacherId;
+    protected static int count = 1;
+    protected static final float baseSalary = 1000000;
 
     public abstract double getSalary();
 
     public Teacher(String fullName) {
         this.fullName = fullName;
-        this.baseSalary = 1000000;
+        this.teacherId = count;
+        count++;
     }
 
-    public String getName() {
+    public int getTeacherId() {
+        return teacherId;
+    }
+
+    public String getFullName() {
         return fullName;
-    }
-
-    public float getWeekHours() {
-        return weekHours;
-    }
-
-    public float getExpYears() {
-        return expYears;
-    }
-
-    public float getBaseSalary() {
-        return baseSalary;
     }
 
     @Override
     public String toString() {
-        return fullName +
-                "   Hours per week: " + weekHours +
-                "   Exp. years: " + expYears +
-                "   Salary" + getBaseSalary();
+        return "Id: " + teacherId + "   " +
+                fullName + "    " +
+                "Salary: $ " + getSalary();
     }
-
 }

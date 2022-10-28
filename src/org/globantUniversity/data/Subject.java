@@ -8,6 +8,7 @@ public class Subject {
     private ArrayList<Student> studentsList;
     private Teacher teacher;
 
+    public Subject(){}
 
     public Subject(String name, int classroom, ArrayList<Student> studentsList, Teacher teacher) {
         this.name = name;
@@ -16,12 +17,16 @@ public class Subject {
         this.teacher = teacher;
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Override
     public String toString() {
         return name +
                 "   Classroom: " + classroom +
-                "   Students: " + studentsList +
-                "   Teacher: " + teacher;
+                "   No. students: " + studentsList.size() +
+                "   Teacher: " + teacher.getFullName();
     }
 
 }

@@ -11,7 +11,7 @@ public class FullTimeTeacher extends Teacher {
 
     @Override
     public double getSalary() {
-        return this.getBaseSalary() * (this.getExpYears() * 1.1);
+        return baseSalary * (this.expYears * 1.1);
     }
 
 }

@@ -13,22 +13,22 @@ public class Initializer {
 
     public static University createUniversity() {
         University university = new University();
-        createStudents(university);
         createTeachers(university);
-        createSubjects(university);
+        createStudents(university);
+        createSubjects(university); 
         return university;
     }
 
-    public static void createTeachers(University university) {
-        PartTimeTeacher PTteacher1 = new PartTimeTeacher("Sandra Gutierrez",32);
-        PartTimeTeacher PTteacher2 = new PartTimeTeacher("Nicolas Cardenas",28);
-        FullTimeTeacher FTteacher1 = new FullTimeTeacher("Sebastian Forero", 14);
-        FullTimeTeacher FTteacher2 = new FullTimeTeacher("Carol Zamudio", 8);
+     public static void createTeachers(University university) {
+        PartTimeTeacher PTteacher1 = new PartTimeTeacher("Sandra Gutierrez",7);
+        PartTimeTeacher PTteacher2 = new PartTimeTeacher("Nicolas Cardenas",8);
+        FullTimeTeacher FTteacher1 = new FullTimeTeacher("Sebastian Forero", 2);
+        FullTimeTeacher FTteacher2 = new FullTimeTeacher("Carolin Zambrano", 4);
 
-        university.registerTeacher(FTteacher1);
-        university.registerTeacher(FTteacher2);
         university.registerTeacher(PTteacher1);
         university.registerTeacher(PTteacher2);
+        university.registerTeacher(FTteacher1);
+        university.registerTeacher(FTteacher2);
     }
 
     public static void createStudents(University university) {
@@ -47,40 +47,39 @@ public class Initializer {
         university.registerStudent(student6);
     }
 
-    public static void createSubjects(University university) {
+   public static void createSubjects(University university) {
         ArrayList<Student> mathStudents = new ArrayList<Student>();
-        mathStudents.add(university.getStudent(1));
-        mathStudents.add(university.getStudent(2));
-        mathStudents.add(university.getStudent(3));
-        mathStudents.add(university.getStudent(4));
-        mathStudents.add(university.getStudent(5));
-        mathStudents.add(university.getStudent(6));
-        Teacher mathTeacher = university.getTeacher(1);
+        mathStudents.add(university.getStudentByIndex(0));
+        mathStudents.add(university.getStudentByIndex(1));
+        mathStudents.add(university.getStudentByIndex(2));
+        mathStudents.add(university.getStudentByIndex(3));
+        mathStudents.add(university.getStudentByIndex(4));
+        Teacher mathTeacher = university.getTeacherByIndex(0);
         Subject math = new Subject("Math", 101, mathStudents , mathTeacher);
         university.registerSubject(math);
 
         ArrayList<Student> scienceStudents = new ArrayList<Student>();
-        scienceStudents.add(university.getStudent(1));
-        scienceStudents.add(university.getStudent(2));
-        scienceStudents.add(university.getStudent(3));
-        Teacher scienceTeacher = university.getTeacher(1);
+        scienceStudents.add(university.getStudentByIndex(0));
+        scienceStudents.add(university.getStudentByIndex(1));
+        scienceStudents.add(university.getStudentByIndex(2));
+        Teacher scienceTeacher = university.getTeacherByIndex(1);
         Subject science = new Subject("Science", 103, scienceStudents ,scienceTeacher);
         university.registerSubject(science);
 
         ArrayList<Student> physicsStudents = new ArrayList<Student>();
-        physicsStudents.add(university.getStudent(4));
-        physicsStudents.add(university.getStudent(5));
-        physicsStudents.add(university.getStudent(6));
-        Teacher physicsTeacher = university.getTeacher(1);
+        physicsStudents.add(university.getStudentByIndex(3));
+        physicsStudents.add(university.getStudentByIndex(4));
+        physicsStudents.add(university.getStudentByIndex(5));
+        Teacher physicsTeacher = university.getTeacherByIndex(2);
         Subject physics = new Subject("Physics", 102, physicsStudents ,physicsTeacher);
         university.registerSubject(physics);
 
         ArrayList<Student> ethicsStudents = new ArrayList<Student>();
-        ethicsStudents.add(university.getStudent(2));
-        ethicsStudents.add(university.getStudent(3));
-        ethicsStudents.add(university.getStudent(4));
-        ethicsStudents.add(university.getStudent(5));
-        Teacher ethicsTeacher = university.getTeacher(1);
+        ethicsStudents.add(university.getStudentByIndex(2));
+        ethicsStudents.add(university.getStudentByIndex(3));
+        ethicsStudents.add(university.getStudentByIndex(4));
+        ethicsStudents.add(university.getStudentByIndex(5));
+        Teacher ethicsTeacher = university.getTeacherByIndex(3);
         Subject ethics = new Subject("Ethics", 104, ethicsStudents ,ethicsTeacher);
         university.registerSubject(ethics);
     }
