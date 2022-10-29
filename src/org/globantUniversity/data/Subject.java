@@ -41,7 +41,7 @@ public class Subject {
         return name +
                 "   -   Classroom: " + classroom +
                 "   -   Teacher: " + teacher.getFullName() +
-                "\nStudents:" + studentsListString;
+                "\nStudents:        " + studentsList.size() + "students in this class" + studentsListString;
     }
 
 }

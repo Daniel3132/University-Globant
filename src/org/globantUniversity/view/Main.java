@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import org.globantUniversity.data.Student;
 import org.globantUniversity.data.Subject;
+import org.globantUniversity.data.Teacher;
 import org.globantUniversity.data.University;
 import org.globantUniversity.persistence.Initializer;
 
@@ -74,15 +75,15 @@ public class Main {
 
     public static void printSubjectsData(University university) {
 
-        Scanner input = new Scanner(System.in);
-
         for (int i = 0; i < university.getSubjectsListSize(); i++) {
-            System.out.println(university.getSubjectByIndex(i));
+            System.out.println("\n" + university.getSubjectByIndex(i));
         }
+
+        Scanner input = new Scanner(System.in);
 
         boolean runSubjectMenu = true;
         do {
-            System.out.println("Select an option!" +
+            System.out.println("\nSelect an option!" +
                     "\n 1. Detail a subject" +
                     "\n 2. Exit to main menu");
 
@@ -95,7 +96,11 @@ public class Main {
                     input = new Scanner(System.in);
 
                     Subject chosenSubject = university.getSubjectByName(name);
-                    System.out.println(chosenSubject.detailedToString());
+                    if (chosenSubject == null) {
+                        System.out.println("\nThis Subject does not exist!");
+                    } else {
+                        System.out.println("\n" + chosenSubject.detailedToString());
+                    }
                     break;
                 case "2":
                     runSubjectMenu = false;
@@ -127,16 +132,27 @@ public class Main {
     public static void createSubject(University university) {
         Scanner input = new Scanner(System.in);
 
-        System.out.println("Enter the name");
-        String name = input.nextLine();
-        input = new Scanner(System.in);
+        String name;
+        boolean teacherNameIsInvalid = true;
+        do {
+            System.out.println("Enter the name");
+            name = input.nextLine();
+            input = new Scanner(System.in);
+
+            if (university.getSubjectByName(name) != null) {
+                System.out.println("This subject already exist!");
+            } else {
+                teacherNameIsInvalid = false;
+            }
+
+        } while (teacherNameIsInvalid);
 
         System.out.println("Enter the classroom number");
         int classroom = input.nextInt();
         input = new Scanner(System.in);
 
         int teacherId;
-        boolean isInvalidId = true;
+        boolean teacherIdIsInvalidId = true;
         do {
             System.out.println("Enter the teacher id");
             teacherId = input.nextInt();
@@ -145,18 +161,18 @@ public class Main {
             if (university.getTeacherById(teacherId) == null) {
                 System.out.println("Invalid Id");
             } else {
-                System.out.println(
-                        "Teacher " + university.getTeacherById(teacherId).getFullName() + " added successfully!");
-                isInvalidId = false;
+                Teacher chosenTeacher = university.getTeacherById(teacherId);
+                System.out.println("Teacher " + chosenTeacher.getFullName() + " added successfully!");
+                teacherIdIsInvalidId = false;
             }
 
-        } while (isInvalidId);
+        } while (teacherIdIsInvalidId);
 
         ArrayList<Student> studentsToAddList = new ArrayList<Student>();
 
         boolean runAddStudentsMenu = true;
         do {
-            System.out.println("Select an option!" +
+            System.out.println("\nSelect an option!" +
                     "\n 1. Add Student by id to the Subject list" +
                     "\n 2. Finish and exit to main menu");
 
@@ -169,11 +185,11 @@ public class Main {
                     input = new Scanner(System.in);
 
                     Student studentToAdd = university.getStudentById(studentId);
-                    if (studentToAdd.getFullName() != null) {
+                    if (studentToAdd.getFullName() == null) {
+                        System.out.println("This student does not exits!");
+                    } else {
                         studentsToAddList.add(studentToAdd);
                         System.out.println("Student " + studentToAdd.getFullName() + " added successfully");
-                    } else {
-                        System.out.println("This student does not exits!");
                     }
 
                     break;
@@ -193,12 +209,26 @@ public class Main {
     public static void printStudentSubjects(University university) {
         Scanner input = new Scanner(System.in);
 
-        System.out.println("Enter the student id");
-        int id = input.nextInt();
-        input = new Scanner(System.in);
+        int id;
+        boolean idIsInvalid = true;
+        do {
+            System.out.println("\nEnter the student id");
+            id = input.nextInt();
+            input = new Scanner(System.in);
 
-        System.out.println("\nStudent:       " + university.getStudentById(id) +
-                "\n\nIs taking:       " + university.getStudentSubjects(id));
+            if (university.getStudentById(id) == null) {
+                System.out.println("\nThis id does not exist!");
+            } else {
+                idIsInvalid = false;
+            }
+        } while (idIsInvalid);
+
+        if (university.getStudentById(id) == null) {
+            System.out.println("Invalid ID");
+        } else {
+            System.out.println("\nStudent:       " + university.getStudentById(id) +
+                    "\nIs taking:       " + university.getStudentSubjects(id));
+        }
     }
 
     public static void printStudentsData(University university) {

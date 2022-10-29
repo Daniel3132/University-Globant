@@ -30,13 +30,12 @@ public class University {
     }
 
     public Student getStudentById(int id) {
-        Student nullStudent = new Student();
         for (Student student : studentsList) {
             if (student.getId() == id) {
                 return student;
             }
         }
-        return nullStudent;
+        return null;
     }
 
     public Teacher getTeacherById(int id) {
