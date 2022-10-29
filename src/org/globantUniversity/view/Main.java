@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import org.globantUniversity.data.Student;
+import org.globantUniversity.data.Subject;
 import org.globantUniversity.data.University;
 import org.globantUniversity.persistence.Initializer;
 
@@ -93,13 +94,8 @@ public class Main {
                     String name = input.nextLine();
                     input = new Scanner(System.in);
 
-                    if ((university.getSubjectByName(name)).getName() != null) {
-                        System.out.println(university.getSubjectByName(name));
-                    } else {
-                        System.out.println("This Subject do not exist!");
-                    }
-
-                    System.out.println(university.getSubjectByName(name));
+                    Subject chosenSubject = university.getSubjectByName(name);
+                    System.out.println(chosenSubject.detailedToString());
                     break;
                 case "2":
                     runSubjectMenu = false;

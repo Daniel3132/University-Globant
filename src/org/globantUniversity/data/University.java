@@ -49,14 +49,16 @@ public class University {
     }
 
     public Subject getSubjectByName(String name) {
-        Subject nullSubject = new Subject();
+        name = name.toLowerCase();
+        
         for (Subject subject : subjectsList) {
-            if (subject.getName().toLowerCase() == name.toLowerCase()) {
-                nullSubject = subject;
-                System.out.println(subject);
+            String currentSubjectName = subject.getName().toLowerCase();
+            
+            if (currentSubjectName.equals(name)) {
+                return subject;
             }
         }
-        return nullSubject;
+        return null;
     }
 
     public int getTeachersListSize() {

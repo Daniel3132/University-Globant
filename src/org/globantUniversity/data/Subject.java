@@ -33,4 +33,15 @@ public class Subject {
                 "   -   Teacher: " + teacher.getFullName();
     }
 
+    public String detailedToString(){
+        String studentsListString = "\n";
+        for (Student student : studentsList) {
+            studentsListString += student + " \n";
+        }
+        return name +
+                "   -   Classroom: " + classroom +
+                "   -   Teacher: " + teacher.getFullName() +
+                "\nStudents:" + studentsListString;
+    }
+
 }
