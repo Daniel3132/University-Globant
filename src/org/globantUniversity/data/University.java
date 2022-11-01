@@ -13,10 +13,6 @@ public class University {
         this.subjectsList = new ArrayList<>();
     }
 
-    public ArrayList<Subject> getSubjectsList() {
-        return subjectsList;
-    }
-
     public Teacher getTeacherByIndex(int index) {
         return this.teachersList.get(index);
     }
@@ -30,13 +26,12 @@ public class University {
     }
 
     public Student getStudentById(int id) {
-        Student nullStudent = new Student();
         for (Student student : studentsList) {
             if (student.getId() == id) {
                 return student;
             }
         }
-        return nullStudent;
+        return null;
     }
 
     public Teacher getTeacherById(int id) {

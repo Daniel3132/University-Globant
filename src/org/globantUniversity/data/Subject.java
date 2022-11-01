@@ -8,8 +8,6 @@ public class Subject {
     private ArrayList<Student> studentsList;
     private Teacher teacher;
 
-    public Subject(){}
-
     public Subject(String name, int classroom, ArrayList<Student> studentsList, Teacher teacher) {
         this.name = name;
         this.classroom = classroom;
@@ -25,6 +23,21 @@ public class Subject {
         return studentsList;
     }
 
+    private String getStudentsListString() {
+        String studentsListString = "\n";
+        for (Student student : studentsList) {
+            studentsListString += student + " \n";
+        }
+        return studentsListString;
+    }
+    
+    public String detailedToString() {
+        return name +
+        "   -   Classroom: " + classroom +
+        "   -   Teacher: " + teacher.getFullName() + "\n" +
+        studentsList.size() + " students in this class:" + getStudentsListString();
+    }
+    
     @Override
     public String toString() {
         return name +
@@ -32,16 +45,4 @@ public class Subject {
                 "   -   No. students: " + studentsList.size() +
                 "   -   Teacher: " + teacher.getFullName();
     }
-
-    public String detailedToString(){
-        String studentsListString = "\n";
-        for (Student student : studentsList) {
-            studentsListString += student + " \n";
-        }
-        return name +
-                "   -   Classroom: " + classroom +
-                "   -   Teacher: " + teacher.getFullName() +
-                "\nStudents:" + studentsListString;
-    }
-
 }

@@ -6,8 +6,11 @@ public abstract class Teacher {
     protected int teacherId;
     protected static int count = 1;
     protected static final float baseSalary = 1000000;
+    protected boolean isFullTime;
 
     public abstract double getSalary();
+
+    public abstract String getContract();
 
     public Teacher(String fullName) {
         this.fullName = fullName;
@@ -27,6 +30,7 @@ public abstract class Teacher {
     public String toString() {
         return "Id: " + teacherId + "   " +
                 fullName + "    " +
+                "Contract: " + getContract() + "    " +
                 "Salary: $ " + getSalary();
     }
 }
