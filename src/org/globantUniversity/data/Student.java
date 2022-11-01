@@ -5,8 +5,6 @@ public class Student {
     private String fullName;
     private int age;
     private static int count = 1;
-
-    public Student(){}
     
     public Student(String fullName, int age) {
         this.id = count;

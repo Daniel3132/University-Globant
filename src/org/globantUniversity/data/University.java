@@ -13,10 +13,6 @@ public class University {
         this.subjectsList = new ArrayList<>();
     }
 
-    public ArrayList<Subject> getSubjectsList() {
-        return subjectsList;
-    }
-
     public Teacher getTeacherByIndex(int index) {
         return this.teachersList.get(index);
     }
